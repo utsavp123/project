@@ -1,0 +1,160 @@
+<div class="model">
+  <div class="modal-header">
+    <h5 class="modal-title">Registration Form</h5>
+    <button type="button" class="btn-close" (click)="activeModal.close('Close click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="row ">
+      <div class="col-sm-4  form-floating">
+        <input type="text" id="fname" name="fname" placeholder="First Name" class=" h-75 form-control"
+          [(ngModel)]="myForm.fname">
+        <label for="fname">First Name</label>
+      </div>
+      <div class="col-sm-4  form-floating">
+        <input type="text" id="mname" name="mname" placeholder="Middle Name" class=" h-75 form-control"
+          [(ngModel)]="myForm.mname">
+        <label for="mname">Middle Name</label>
+      </div>
+      <div class="col-sm-4  form-floating">
+        <input type="text" id="lname" name="lname" placeholder="Last Name" class=" h-75 form-control"
+          [(ngModel)]="myForm.lname">
+        <label for="lname">Last Name</label>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-sm-4 form-floating">
+        <input type="text" id="dob" name="dob" [(ngModel)]="myForm.dob" class=" h-75 form-control"
+          onfocus="(this.type='date')" onfocusout="(this.type='text')" placeholder="Date of Birth">
+        <label for="dob">Date Of Birth</label>
+      </div>
+      <div class="col-sm-8 row">
+        <span class="col-4 col-lg-3">Gender :- </span>
+        <div class="form-check col-3 col-lg-2">
+          <input type="radio" id="male" class="form-check-input" [(ngModel)]="myForm.gender" value="Male" name="gender">
+          <label for="male" class="form-check-label">Male</label>
+        </div>
+        <div class="form-check col-3 col-lg-2">
+          <input type="radio" id="female" class="form-check-input" [(ngModel)]="myForm.gender" value="Female"
+            name="gender">
+          <label for="female" class="form-check-label">Female</label>
+        </div>
+      </div>
+    </div>
+    <div class="w-100 h-auto my-3   form-floating ">
+      <div class=" h-auto form-control Address">
+        <div class="px-2 row w-auto ">
+          <textarea class="col-12 p-2 rounded-2 mt-2" name="addressOne" [(ngModel)]="myForm.address" id="addressOne"
+            rows="2" placeholder="Address-1"></textarea>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 px-2 pt-3  ">
+            <select id="country" class="form-select" name="country" [(ngModel)]="myForm.countryId"
+              (change)="changeCountry()">
+              <option [value]='-1'>Country</option>
+              <option *ngFor="let i of countryArray" [ngValue]="i.id">{{i.name}}</option>
+            </select>
+          </div>
+          <div class="col-sm-6 px-2 pt-3 pb-3 ">
+            <select name="state" id="state" class="form-select" [(ngModel)]="myForm.stateId" (change)="changeState()">
+              <option [value]='-1' selected>State</option>
+              <option *ngFor="let i of state" [ngValue]="i.id">{{i.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col-sm-6 px-2 pb-3 ">
+            <select class="form-select  " name="city" id="city" [(ngModel)]="myForm.cityId">
+              <option [value]='-1'>City</option>
+              <option *ngFor="let i of city" [ngValue]="i.id">{{i.name}}</option>
+            </select>
+          </div>
+          <div class="col-sm-6 px-2 form-floating pinCode-1 ">
+            <input type="text" class="w-100  h-75 form-control" [(ngModel)]="myForm.pinCode" placeholder="Pin-code"
+              id="pinCode" name="pin-code"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+            <label for="pin-code" class="">Pin-code </label>
+          </div>
+        </div>
+      </div>
+      <label for="fname" class="bg-body address">Address</label>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 form-floating">
+        <input type="text" id="userName" name="userName" class="h-75  form-control" placeholder="Username"
+          [(ngModel)]="myForm.userName">
+        <label for="userName">Username</label>
+      </div>
+      <div class="col-sm-6 form-floating">
+        <input type="email" id="email" name="email" class="h-75  form-control" placeholder="Email-Id"
+          [(ngModel)]="myForm.email">
+        <label for="email">Email-Id</label>
+      </div>
+      <div class="col-sm-6 form-floating d-flex">
+        <input type="password" #pass id="password" name="password" class="h-75  form-control" placeholder="Password"
+          [(ngModel)]="myForm.password">
+        <label for="password">Password</label>
+        <i (click)="pass.type  = pass.type == 'text'?'password':'text'"
+          [ngClass]="{'fa-eye-slash': pass.type === 'password', 'fa-eye' : pass.type == 'text' }"
+          class="fa fa-eye-slash pasIcon position-absolute"></i>
+      </div>
+      <div class="col-sm-6 form-floating d-flex">
+        <input type="password" #ConPas id="conPassword" name="conPassword" class="h-75  form-control"
+          placeholder="Confirm Password" [(ngModel)]="myForm.conPassword">
+        <i class="fa pasIcon position-absolute" (click)="ConPas.type  = ConPas.type == 'text'?'password':'text'"
+          [ngClass]="{'fa-eye-slash': ConPas.type === 'password', 'fa-eye' : ConPas.type == 'text' }"></i>
+        <label for="email">Confirm Password</label>
+      </div>
+
+    </div>
+    <div class="row">
+      <span class="col-sm-3 col-6 ">Hobby :-</span>
+      <div class="col-sm-6 col-6 row">
+        <div class="form-check col-sm-6 col-12">
+          <input class="form-check-input" type="checkbox" value="" id="all" [(ngModel)]="myForm.All"
+            (change)="selectAll()">
+          <label class="form-check-label" for="all">
+            Select All
+          </label>
+        </div>
+        <div class="form-check col-sm-6 col-12">
+          <input class="form-check-input" type="checkbox" value="" id="playGame" [(ngModel)]="myForm.PlayGame"
+            (change)="check()">
+          <label class="form-check-label" for="playGame">
+            Play Game
+          </label>
+        </div>
+        <div class="form-check col-sm-6 col-12">
+          <input class="form-check-input" type="checkbox" value="" id="reading" [(ngModel)]="myForm.Reading"
+            (change)="check()">
+          <label class="form-check-label" for="reading">
+            Reading
+          </label>
+        </div>
+        <div class="form-check col-sm-6 col-12">
+          <input class="form-check-input" type="checkbox" value="" id="exercise" [(ngModel)]="myForm.Exercise"
+            (change)="check()">
+          <label class="form-check-label" for="exercise">
+            Exercise
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <span class="col-sm-3 col-6 ">Skills :-</span>
+      <div class="col-6 col-sm-9 skills">
+        <span *ngFor="let a of myForm.skill" class="m-1 d-inline-block skill">{{a}}
+          <i class="fa fa-close " style="font-size:24px;color:rgb(0, 0, 0)" (click)="closeSkill(a)"></i>
+        </span>
+        <input type="text" class="m-2 mw-100" [(ngModel)]="skills" (keyup.backspace)="onBackspace()"
+          (keyup.enter)="onEnter()">
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary " data-bs-dismiss="modal"
+      (click)="activeModal.close('Close click')">Close</button>
+    <button type="submit" class="btn btn-primary"
+      (click)="validation() ; submit == true ? activeModal.close('Close click'): ' '">Submit</button>
+  </div>
+</div>

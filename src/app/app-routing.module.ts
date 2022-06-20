@@ -7,7 +7,7 @@ import { UserComponent } from './user/user.component';
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'user', component: UserComponent},
-  { path: 'logout', component: LogoutComponent}
+  { path: 'logout', component: LogoutComponent},
 ];
 
 @NgModule({

@@ -1,1 +1,51 @@
-<h2 class="text-center  m-2 p-2" >Welcome To User</h2>
+
+<button type="button" class="btn btn-primary float-end m-2" data-toggle="modal" data-target="#myModal" (click)="open()">
+   Add User
+</button>
+<div class="table-responsive text-nowrap mainTable  container">
+   <table class="table mt-3 table-bordered table-hover sortable" id="topScores">
+      <thead  id="topScores1">
+          <tr>
+              <th >No.</th>
+              <th >Firstname</th>
+              <th >Middlename</th>
+              <th >Lastname</th>
+              <th >DOB</th>
+              <th >Gender</th>
+              <th >Add-1</th>
+              <th >Country</th>
+              <th >State</th>
+              <th>City</th>
+              <th>PinCode</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Password</th>
+              <th>Hobby</th>
+              <th>Skills</th>
+              <!-- <th >Action</th> -->
+          </tr>
+      </thead>
+      <tbody  id="tbody" >
+         <tr *ngFor="let item of new1 ; let i = index">
+            <th >{{i+1}}</th>
+            <th >{{item.Fname}}</th>
+            <th >{{item.Mname}}</th>
+            <th >{{item.Lname}}</th>
+            <th >{{item.DOB}}</th>
+            <th >{{item.Gender}}</th>
+            <th >{{item.Address1}}</th>
+            <th >{{country[i][0].name}}</th>
+            <th >{{state[i][0].name}}</th>
+            <th>{{city[i][0].name}}</th>
+            <th>{{item.PinCode}}</th>
+            <th>{{item.Username}}</th>
+            <th>{{item.Password}}</th>
+            <th>{{item.ConfirmPassword}}</th>
+            <th>{{item.Hobby}}</th>
+            <th>{{item.Skills}}</th>
+            <!-- <th><i class="fa fa-edit mx-1 " style="font-size:14px;color:rgb(0, 0, 0)" ></i><i class="fa fa-trash mx-1 " style="font-size:14px;color:rgb(0, 0, 0)" ></i></th> -->
+            <!-- <th >{{item.Fname}}</th> -->
+        </tr>
+      </tbody>
+   </table>
+</div>

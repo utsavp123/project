@@ -3,8 +3,8 @@
     [ngStyle]="{'display':  col}">
     <div class=" mt-2">
       <h3 class="text-white d-inline mx-3">Menu</h3>
-      <i class="fa fa-times float-end text-light fa-2x  pt-0 px-3 " [ngStyle]="{'display':  col}" 
-        (click)="onClose()" aria-hidden="true"></i>
+      <i class="fa fa-times float-end text-light fa-2x  pt-0 px-3 " [ngStyle]="{'display':  col}" (click)="onClose()"
+        aria-hidden="true"></i>
     </div>
     <ul class="list-group list-group-flush mx-3 mt-3">
       <li class=" h5 pt-2 mt-2 list-item">
@@ -21,17 +21,16 @@
 </div>
 <header class=" w-100">
   <div class="bg-dark text-center ">
-    <i class="fa fa-bars text-light fa-2x float-start pt-1 px-2"  (click)="onOpen()"
-      aria-hidden="true"></i>
-    <div class="dropdown">
-      <li class="fa fa-user-circle text-light fa-2x float-end pt-1 px-2 " id="dropdownMenuButton"
-        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fa fa-bars text-light fa-2x float-start pt-1 px-2" (click)="onOpen()" aria-hidden="true"></i>
+    <div class="dropdown d-inline-block float-end ">
+      <li class="dropbtn fa fa-user-circle text-light fa-2x float-end pt-1 px-2 " id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
       </li>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a href="" class="dropdown-item">Add User</a>
+      <div class="dropdown-content" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" >Add User</a>
         <div class="dropdown-divider"></div>
-        <a href="" class="dropdown-item">My Profile</a>
-        <a href="" class="dropdown-item">Support</a>
+        <a class="dropdown-item">My Profile</a>
+        <a class="dropdown-item">Support</a>
         <a routerLink="/logout" class="dropdown-item">Log out</a>
       </div>
     </div>
@@ -45,4 +44,5 @@
     </div>
   </footer>
 </div>
+
 <router-outlet></router-outlet>
