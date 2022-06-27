@@ -10,6 +10,7 @@ import { ModComponent } from './mod/mod.component';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserComponent,
     LogoutComponent,
     ModComponent,
+    DropdownComponent,
  
   ],
   imports: [
@@ -27,7 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 2000,
+      progressBar : true,
+      timeOut: 5000,
       enableHtml: true,
       preventDuplicates: true,
     })

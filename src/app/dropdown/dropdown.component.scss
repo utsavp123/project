@@ -1,0 +1,15 @@
+.modal-dialog {
+    max-width: 500px;
+    float: right !important;
+    margin: 0 !important;
+}
+ul{
+    padding-left: 0px !important;
+    list-style: none;
+}
+.dropDown{
+    height: 233px;
+}
+.dropDown::-webkit-scrollbar{
+    display: none;
+}

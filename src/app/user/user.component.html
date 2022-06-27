@@ -1,51 +1,201 @@
+<div>
+      <div class="d-flex justify-content-between ">
 
-<button type="button" class="btn btn-primary float-end m-2" data-toggle="modal" data-target="#myModal" (click)="open()">
-   Add User
-</button>
-<div class="table-responsive text-nowrap mainTable  container">
-   <table class="table mt-3 table-bordered table-hover sortable" id="topScores">
-      <thead  id="topScores1">
-          <tr>
-              <th >No.</th>
-              <th >Firstname</th>
-              <th >Middlename</th>
-              <th >Lastname</th>
-              <th >DOB</th>
-              <th >Gender</th>
-              <th >Add-1</th>
-              <th >Country</th>
-              <th >State</th>
-              <th>City</th>
-              <th>PinCode</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Password</th>
-              <th>Hobby</th>
-              <th>Skills</th>
-              <!-- <th >Action</th> -->
-          </tr>
-      </thead>
-      <tbody  id="tbody" >
-         <tr *ngFor="let item of new1 ; let i = index">
-            <th >{{i+1}}</th>
-            <th >{{item.Fname}}</th>
-            <th >{{item.Mname}}</th>
-            <th >{{item.Lname}}</th>
-            <th >{{item.DOB}}</th>
-            <th >{{item.Gender}}</th>
-            <th >{{item.Address1}}</th>
-            <th >{{country[i][0].name}}</th>
-            <th >{{state[i][0].name}}</th>
-            <th>{{city[i][0].name}}</th>
-            <th>{{item.PinCode}}</th>
-            <th>{{item.Username}}</th>
-            <th>{{item.Password}}</th>
-            <th>{{item.ConfirmPassword}}</th>
-            <th>{{item.Hobby}}</th>
-            <th>{{item.Skills}}</th>
-            <!-- <th><i class="fa fa-edit mx-1 " style="font-size:14px;color:rgb(0, 0, 0)" ></i><i class="fa fa-trash mx-1 " style="font-size:14px;color:rgb(0, 0, 0)" ></i></th> -->
-            <!-- <th >{{item.Fname}}</th> -->
-        </tr>
-      </tbody>
-   </table>
+            <input type="text" placeholder="Search" class="form-control w-auto h-75 mt-2 mx-3" [(ngModel)]="inputValue"
+                  (keyup)='search()'>
+            <div class="float-end d-flex">
+                  <div class="dropdown ">
+                        <ng-container *ngIf="myDropdown">
+                              <app-dropdown [sendData]="dropDownArray" [sendFillData]="newItem1"
+                                    (customerChange)="crossOffItem($event)" (close)="close($event)"
+                                    class="mt-5 rounded newCom position-absolute bg-body "></app-dropdown>
+                        </ng-container>
+                  </div>
+                  <div class="mt-2 float-end p-1 h-75 bg-body rounded">
+
+                        <span class="  mx-1 p-1">{{filterArray[0]}}</span>
+                        <span class=" mx-1 p-1">{{filterArray[1]}}</span>
+                        <ng-container *ngIf="lenFilterArray>0">
+
+                              <span class=" mx-1 p-1">+{{lenFilterArray}}</span>
+                        </ng-container>
+                        <button type="button" class="" data-toggle="modal" data-target="#myModal"
+                              (click)="myDropdown = myDropdown?false:true ;">v
+                        </button>
+                  </div>
+                  <button type="button" class="btn btn-primary  m-2" data-toggle="modal" data-target="#myModal"
+                        (click)="open()">
+                        Add User
+                  </button>
+            </div>
+      </div>
+</div>
+
+<div class="">
+      <div class=" ">
+            <div class="table-responsive   text-nowrap   myTable ">
+                  <table class="table  table-bordered table-hover sortable" id="topScores">
+                        <thead id="topScores1 ">
+                              <tr class="a1">
+                                    <th [ngClass]="newItem1.Firstname?'':'d-none'" (click)="sort('id')" class>No.<i
+                                                class="fa-solid  "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'  "></i></th>
+                                    <th [ngClass]="newItem1.Firstname?'':'d-none'  " (click)="sort('fname')">Firstname<i
+                                                class="fa-solid "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'  "></i></th>
+                                    <th [ngClass]="newItem1.Middlename?'':'d-none'  " (click)="sort('mname')">
+                                          Middlename<i class="fa-solid "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'"></i></th>
+                                    <th [ngClass]="newItem1.Lastname?'':'d-none'  " (click)="sort('lname')">Lastname<i
+                                                class="fa-solid "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'"></i></th>
+                                    <th [ngClass]="newItem1.DOB?'':'d-none'  " (click)="sort('dob')">DOB<i
+                                                class="fa-solid "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'"></i></th>
+                                    <th [ngClass]="newItem1.Gender?'':'d-none'  " (click)="sort('gender')">Gender<i
+                                                class="fa-solid "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'"></i></th>
+                                    <th [ngClass]="newItem1.Add?'':'d-none'  " (click)="sort('address')">Add<i
+                                                class="fa-solid "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'"></i></th>
+                                    <th [ngClass]="newItem1.Country?'':'d-none'  " (click)="sort('countryName')">
+                                          Country<i class="fa-solid "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'"></i></th>
+                                    <th [ngClass]="newItem1.State?'':'d-none'  " (click)="sort('stateName')">State<i
+                                                class="fa-solid "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'"></i></th>
+                                    <th [ngClass]="newItem1.City?'':'d-none'  " (click)="sort('cityName')">City<i
+                                                class="fa-solid "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'"></i></th>
+                                    <th [ngClass]="newItem1.PinCode?'':'d-none'  " (click)="sort('pinCode')">PinCode<i
+                                                class="fa-solid "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'"></i></th>
+                                    <th [ngClass]="newItem1.Username?'':'d-none'  " (click)="sort('userName')">
+                                          Username<i class="fa-solid "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'"></i></th>
+                                    <th [ngClass]="newItem1.Email?'':'d-none'  " (click)="sort('email')">Email<i
+                                                class="fa-solid "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'"></i></th>
+                                    <th [ngClass]="newItem1.Password?'':'d-none'  " (click)="sort('password')">
+                                          Password<i class="fa-solid "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'"></i></th>
+                                    <th [ngClass]="newItem1.Hooby?'':'d-none'  " (click)="sort('hobby')">Hobby<i
+                                                class="fa-solid "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'"></i></th>
+                                    <th [ngClass]="newItem1.Skills?'':'d-none'  " (click)="sort('skill')">Skills<i
+                                                class="fa-solid "
+                                                [ngClass]="sorting?'fa-arrow-down-z-a':'fa-arrow-down-a-z'"></i></th>
+                                    <th>Action</th>
+                              </tr>
+                        </thead>
+                        <tbody id="tbody" class="overflow-auto ">
+                              <tr *ngFor="let item of userListModel1 ; let i = index" class="">
+                                    <ng-container *ngIf="firstRecord <= i && lastRecord > i ">
+                                          <td [ngClass]="newItem1.Firstname?'':'d-none'">{{item.id+1}}</td>
+                                          <td [ngClass]="newItem1.Firstname?'':'d-none'">{{item.fname}}</td>
+                                          <td [ngClass]="newItem1.Middlename?'':'d-none'">{{item.mname}}</td>
+                                          <td [ngClass]="newItem1.Lastname?'':'d-none'">{{item.lname}}</td>
+                                          <td [ngClass]="newItem1.DOB?'':'d-none'">{{item.dob}}</td>
+                                          <td [ngClass]="newItem1.Gender?'':'d-none'">{{item.gender}}</td>
+                                          <td [ngClass]="newItem1.Add?'':'d-none'">{{item.address}}</td>
+                                          <td [ngClass]="newItem1.Country?'':'d-none'">{{item.countryName}}</td>
+                                          <td [ngClass]="newItem1.State?'':'d-none'">{{item.stateName}}</td>
+                                          <td [ngClass]="newItem1.City?'':'d-none'">{{item.cityName}}</td>
+                                          <td [ngClass]="newItem1.PinCode?'':'d-none'">{{item.pinCode}}</td>
+                                          <td [ngClass]="newItem1.Username?'':'d-none'">{{item.userName}}</td>
+                                          <td [ngClass]="newItem1.Email?'':'d-none'">{{item.email}}</td>
+                                          <td [ngClass]="newItem1.Password?'':'d-none'"><input class="passInput"
+                                                      type='password' #ConPas [value]="item.password" disabled> <i
+                                                      class="fa pasIcon p-2"
+                                                      (click)="ConPas.type  = ConPas.type == 'text'?'password':'text'"
+                                                      [ngClass]="ConPas.type == 'password'?'fa-eye-slash':'fa-eye'"></i>
+                                          </td>
+                                          <td [ngClass]="newItem1.Hooby?'':'d-none'">{{item.hobby}}</td>
+                                          <td [ngClass]="newItem1.Skills?'':'d-none'">{{item.skill}}</td>
+                                          <td><i class="fa fa-edit mx-1 " style="font-size:14px;color:rgb(0, 0, 0)"
+                                                      (click)="updateData(item)"></i><i class="fa fa-trash mx-1 "
+                                                      (click)="deleteData(i)"
+                                                      style="font-size:14px;color:rgb(0, 0, 0)"></i>
+                                          </td>
+                                    </ng-container>
+                              </tr>
+                        </tbody>
+                  </table>
+                  <ng-container *ngIf="a1==0">
+                        <div class="text-center my-3">Record Not Found</div>
+                  </ng-container>
+            </div>
+      </div>
+
+
+      <div class="mt-3">
+
+            <ng-container *ngIf="lastPageNo >0">
+                  <div class="d-flex mt-2  justify-content-center flex-wrap"
+                        [ngClass]="numberOfPages==1000 ? 'd-none' : ''">
+                        <ng-container *ngIf="numberOfPages!=1000">
+                              <div class="m-1">
+                                    <select class="form-select  px-4 col-md-2 " id="pagesNumberOfData"
+                                          [(ngModel)]="numberOfPages" (change)="selctNumberOfPage()">
+                                          <option value="5">5</option>
+                                          <option value="10">10</option>
+                                          <option value="20">20</option>
+                                          <option value="100">100</option>
+                                    </select>
+                              </div>
+                              <div>
+                                    <ul class="pagination col-1 m-1 mx-4  " id="pages">
+                                          <li class="page-item"><a class="page-link" id="pre"
+                                                      (click)="previousPage()">Previous</a>
+                                          </li>
+                                          <li class="page-item" [ngClass]="currentPage==(1)?'active':''"><a
+                                                      class="page-link " (click)="currentPageNumber(1)">1</a></li>
+                                          <ng-container *ngIf="currentPage >=4">
+                                                <li class="page-item disabled"><a class="page-link ">...</a></li>
+                                          </ng-container>
+                                          <li class="page-item"
+                                                *ngFor="let le of [].constructor(lastPageNo-1) ; let i = index"
+                                                [ngClass]="currentPage==(i+1)?'active':''">
+                                                <ng-container *ngIf="i >  0 ">
+                                                      <ng-container *ngIf="currentPage ==  1  ; else elseNotDone">
+                                                            <ng-container
+                                                                  *ngIf="currentPage+1== i+1 || currentPage+2==i+1 || currentPage==i+1 ">
+                                                                  <a class="page-link "
+                                                                        (click)="currentPageNumber(i+1)">{{i+1}}</a>
+                                                            </ng-container>
+                                                      </ng-container>
+                                                      <ng-template #elseNotDone>
+                                                            <ng-container
+                                                                  *ngIf="(currentPage+1== i+1 || currentPage==i+1 ||  currentPage-1 ==i+1)">
+                                                                  <a class="page-link "
+                                                                        (click)="currentPageNumber(i+1)">{{i+1}}</a>
+                                                            </ng-container>
+                                                      </ng-template>
+                                                </ng-container>
+                                          </li>
+                                          <!-- <a class="page-link "
+                           (click)="currentPageNumber(i+1)">{{i+1}}</a></li>
+                              <li class="page-item" *ngFor="let le of [].constructor(lastPageNo) ; let i = index"
+                        [ngClass]="currentPage==(i+1)?'active':''"><a class="page-link "
+                           (click)="currentPageNumber(i+1)">{{i+1}}</a></li> -->
+                                          <ng-container *ngIf="currentPage<lastPageNo-2">
+                                                <li class="page-item disabled"><a class="page-link ">...</a></li>
+                                          </ng-container>
+                                          <ng-container *ngIf="lastPageNo>1">
+                                                <li class="page-item" [ngClass]="currentPage==(lastPageNo)?'active':''">
+                                                      <a class="page-link "
+                                                            (click)="currentPageNumber(lastPageNo)">{{lastPageNo}}</a>
+                                                </li>
+                                          </ng-container>
+                                          <li class="page-item"><a class="page-link" id="next"
+                                                      (click)="nextpage()">Next</a>
+                                          </li>
+                                    </ul>
+                              </div>
+                        </ng-container>
+
+                  </div>
+            </ng-container>
+      </div>
+
 </div>

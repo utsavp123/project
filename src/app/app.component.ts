@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export default class AppComponent {
   title = 'project';
   col: string = 'none'
-  time = new Date();
+  time = new Date().toDateString();
   intervalId: any;
   subscription: any;
   constructor() {
@@ -36,7 +36,7 @@ export default class AppComponent {
 
   time1() {
     this.intervalId = setInterval(() => {
-      this.time = new Date();
+      this.time = new Date().toDateString();      
     }, 1000);
   }
 } 

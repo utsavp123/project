@@ -15,7 +15,10 @@
 }
 .fa{
     cursor: pointer;
+    background-color: transparent;
+    border: none;
 }
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -33,4 +36,20 @@
 }
 .dropdown:hover .dropdown-content {
   display: block;
+}
+.fa-user-circle ,.fa-bars{
+  margin-top: 5px;
+  font-size: 24px;
+}
+.time{
+    display: inline-block;
+    padding: 4px 10px;
+    margin: 4px;
+    background-color: rgb(91, 229, 91);
+    border-radius: 17px;
+    color: black !important;
+    float: right;
+}
+.header{
+  height: 40px;
 }

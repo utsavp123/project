@@ -55,9 +55,9 @@
             </select>
           </div>
           <div class="col-sm-6 px-2 pt-3 pb-3 ">
-            <select name="state" id="state" class="form-select" [(ngModel)]="myForm.stateId" (change)="changeState()">
+            <select name="state" id="state" class="form-select" name="state"  [(ngModel)]="myForm.stateId" (change)="changeState()">
               <option [value]='-1' selected>State</option>
-              <option *ngFor="let i of state" [ngValue]="i.id">{{i.name}}</option>
+              <option *ngFor="let i of state" [value]="i.id">{{i.name}}</option>
             </select>
           </div>
         </div>

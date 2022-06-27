@@ -1,12 +1,100 @@
-.mainTable{
-    margin-top: 5%;
+thead {
+    background: linear-gradient(90deg, #8dfbf7 40%, #a3ffa3 60%) center center/cover;
 }
-thead{
-    background: linear-gradient(90deg, #8dfbf7 40%, #a3ffa3 60%)  center center/cover;
+
+tbody {
+    background: linear-gradient(90deg, #d8fff7 40%, #ffffff 60%) center center/cover;
+    border-top: none !important;
 }
-tbody{
-    background: linear-gradient(90deg, #d8fff7 40%, #ffffff 60%)  center center/cover;
+
+
+td {
+
+    // padding: 15px 5px;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-th{
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+th {
+    border: none !important;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.table-responsive::-webkit-scrollbar {
+    display: none;
+}
+::-webkit-scrollbar {
+    display: none;
+  }
+.fa-solid {
+    visibility: hidden;
+}
+
+.page-link {
+    padding: .375rem .4rem;
+}
+
+th:hover {
+    .fa-solid {
+        visibility: visible;
+    }
+}
+
+.passInput {
+    width: 100px;
+}
+
+.border {
+    border-color: black !important;
+}
+
+.myTable {
+    height: 450px;
+}
+
+.myTable::-webkit-scrollbar {
+    display: none;
+}
+
+.table>:not(caption)>*>* {
+    padding: .4rem .4rem;
+    // background-color: var(--bs-table-bg);
+    // border-bottom-width: 1px;
+    // box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+}
+
+.a1 {
+    position: sticky;
+    top: 0;
+    // z-index: 1;
+    background: linear-gradient(90deg, #8dfbf7 40%, #a3ffa3 60%) center center/cover;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin-top: 33px;
+    border-radius: 10px;
+    right: 0;
+
+    a:hover {
+        background-color: #f1f1f1
+    }
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.newCom {
+    width: 180px;
+    z-index: 10;
+    box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.2);
+    margin-right: 15px;
 }

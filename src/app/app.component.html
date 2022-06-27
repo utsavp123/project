@@ -1,14 +1,14 @@
 <div class="row ">
   <div class="col-7 col-sm-4 col-lg-2 col-xxl-2 h-100 position-fixed bg-dark px-0" id="sideBar"
-    [ngStyle]="{'display':  col}">
-    <div class=" mt-2">
-      <h3 class="text-white d-inline mx-3">Menu</h3>
-      <i class="fa fa-times float-end text-light fa-2x  pt-0 px-3 " [ngStyle]="{'display':  col}" (click)="onClose()"
+  [ngStyle]="{'display':  col}">
+  <div class=" mt-2">
+    <h3 class="text-white d-inline mx-3">Menu</h3>
+      <i class="fa fa-bars float-end text-light fa-2x  pt-0 px-3 " (click)="onClose()"
         aria-hidden="true"></i>
     </div>
     <ul class="list-group list-group-flush mx-3 mt-3">
       <li class=" h5 pt-2 mt-2 list-item">
-        <a routerLink="/dashboard" class="text-decoration-none">Dashboard </a>
+        <a routerLink="/dashboard" class="text-decoration-none" >Dashboard </a>
       </li>
       <li class=" h5 pt-2 mt-2 list-item ">
         <a routerLink="/user" class="text-decoration-none"> User</a>
@@ -20,29 +20,23 @@
   </div>
 </div>
 <header class=" w-100">
-  <div class="bg-dark text-center ">
+  <div class="bg-dark  header">
     <i class="fa fa-bars text-light fa-2x float-start pt-1 px-2" (click)="onOpen()" aria-hidden="true"></i>
     <div class="dropdown d-inline-block float-end ">
-      <li class="dropbtn fa fa-user-circle text-light fa-2x float-end pt-1 px-2 " id="dropdownMenuButton" data-toggle="dropdown"
+      <button
+       class="dropbtn fa fa-user-circle text-light  float-end pt-1 px-2 " id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-      </li>
+      </button>
       <div class="dropdown-content" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" >Add User</a>
+        <p class="dropdown-item" >Add User</p>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item">My Profile</a>
-        <a class="dropdown-item">Support</a>
-        <a routerLink="/logout" class="dropdown-item">Log out</a>
+        <p class="dropdown-item">My Profile</p>
+        <p class="dropdown-item">Support</p>
+        <p routerLink="/logout" class="dropdown-item">Log out</p>
       </div>
     </div>
-    <h5 class="text-center text-white p-2 m-0">Current Date:-{{ time | date:'d/M/yy, h:mm:ss a'}} </h5>
+    <span  class="time text-end text-white">{{time}} </span>
   </div>
 </header>
-<div class="text-center footer position-absolute bottom-0">
-  <footer>
-    <div class=" ">
-      Copyright &copy; 2022
-    </div>
-  </footer>
-</div>
-
+<!-- <app-dashboard></app-dashboard> -->
 <router-outlet></router-outlet>

@@ -1,0 +1,11 @@
+<input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchData"  (keyup)='search()'>
+<div class="container dropDown overflow-auto">
+    <ul>
+        <li *ngFor="let item of sendData1 ; let i = index" class=""><input id="{{i}}" [(ngModel)]="testObject[item]"
+                class="form-check-input m-2" type="checkbox"><label class="w-75" for="{{i}}">{{item}}</label></li>
+    </ul>
+</div>
+<div class="text-center mb-2 d-flex justify-content-around">
+    <button class="btn btn-primary my-2" (click)="update()">Save</button>
+    <button class="btn btn-primary my-2" (click)="closeDrop()">Close</button>
+</div>
