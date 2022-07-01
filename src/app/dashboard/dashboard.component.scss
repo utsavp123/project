@@ -1,5 +1,8 @@
-.card{
+.card {
   height: 150px;
   border-radius: 20px;
-  background-color:rgb(191 255 226);
+  background-color: rgb(191 255 226);
+  background: linear-gradient(180deg, rgb(255, 255, 255) 35%, rgb(189 255 160) 71%, rgb(121, 255, 87) 105%);
+  box-shadow: 5px 5px 17px 4px #646464;
+  border-color: aliceblue;
 }

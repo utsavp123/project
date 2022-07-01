@@ -11,7 +11,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DropdownComponent } from './dropdown/dropdown.component';
-
+import { ElectricityComponent } from './electricity/electricity.component';
+import {HttpClientModule} from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,14 +22,17 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     LogoutComponent,
     ModComponent,
     DropdownComponent,
+    ElectricityComponent,
  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ModalModule,  
+    HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     ToastrModule.forRoot({
       progressBar : true,
       timeOut: 5000,
@@ -36,6 +41,6 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

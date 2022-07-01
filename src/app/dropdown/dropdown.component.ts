@@ -18,8 +18,6 @@ export class DropdownComponent implements OnInit {
 
   abc: boolean;
   constructor() { }
-
-
   ngOnInit(): void {
     this.testObject = JSON.parse(JSON.stringify(this.sendFillData));
     this.sendData1 = this.sendData;
@@ -30,7 +28,6 @@ export class DropdownComponent implements OnInit {
   }
   closeDrop() {
     this.close.emit(this.dropdown);
-
   }
   search() {
     if (!this.searchData) {
@@ -40,6 +37,4 @@ export class DropdownComponent implements OnInit {
         x.trim().toLowerCase().includes(this.searchData.trim().toLowerCase()));
     }
   }
-
-
 }

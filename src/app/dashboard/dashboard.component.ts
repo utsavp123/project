@@ -15,8 +15,6 @@ export class DashboardComponent implements OnInit {
   hourDiff: number;
   dayDiff: number;
   monDiff:number;
-  
-
   constructor() { }
 
   ngOnInit(): void {
@@ -33,8 +31,6 @@ export class DashboardComponent implements OnInit {
     this.hourDiff = this.curr - oneHours;
     this.dayDiff = this.curr - oneDay;
     this.monDiff = this.curr - monthDay;
-    console.log(this.monDiff);
-    
   }
   hours() {
     this.diffrence();
@@ -47,6 +43,7 @@ export class DashboardComponent implements OnInit {
   }
   day() {
     this.diffrence();
+
     this.lastOneDayRecord = this.totalRecord.filter(val => {
       let n = new Date(val.currentDataTime).getTime();
       return n > this.dayDiff
@@ -60,8 +57,5 @@ export class DashboardComponent implements OnInit {
       return n > this.monDiff;
     }
     ).length;
-    
-
   }
-
 }

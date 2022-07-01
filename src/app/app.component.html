@@ -1,4 +1,4 @@
-<div class="row ">
+<div class="row " >
   <div class="col-7 col-sm-4 col-lg-2 col-xxl-2 h-100 position-fixed bg-dark px-0" id="sideBar"
   [ngStyle]="{'display':  col}">
   <div class=" mt-2">
@@ -12,6 +12,9 @@
       </li>
       <li class=" h5 pt-2 mt-2 list-item ">
         <a routerLink="/user" class="text-decoration-none"> User</a>
+      </li>
+      <li class=" h5 pt-2 mt-2 list-item ">
+        <a routerLink="/electricity" class="text-decoration-none"> Electricity</a>
       </li>
       <li class=" h5 pt-2 mt-2 position-absolute bottom-0 list-item w-100">
         <a routerLink="/logout" class="text-decoration-none"> Logout</a>
@@ -35,8 +38,7 @@
         <p routerLink="/logout" class="dropdown-item">Log out</p>
       </div>
     </div>
-    <span  class="time text-end text-white">{{time}} </span>
+    <span  class="time text-end text-white">{{time | date:' MMM dd YYYY h:mm:ss a'}} </span>
   </div>
 </header>
-<!-- <app-dashboard></app-dashboard> -->
-<router-outlet></router-outlet>
+<router-outlet ></router-outlet>

@@ -51,5 +51,10 @@
     float: right;
 }
 .header{
-  height: 40px;
+  z-index: 2;
+  top: 0px;
+  position: fixed;
+  /* height: 40px; */
+  width: 100%;
 }
+

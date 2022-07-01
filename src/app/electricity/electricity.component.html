@@ -1,0 +1,182 @@
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <!-- <div class="kinetic"></div>
+  <p class="load">Loading...</p> -->
+  <!-- LOADER2  -->
+  <div class="globe">
+    <div class="bird">
+      <div class="body">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="beak">
+          <div></div>
+        </div>
+        <div class="feet"></div>
+        <div class="wire"></div>
+      </div>
+      <div class="hills"></div>
+      <div class="cloud"></div>
+      <div class="cloud small"></div>
+    </div>
+  </div>
+  <div class="waviy text-center">
+    <span style="--i:1">L</span>
+    <span style="--i:2">o</span>
+    <span style="--i:3">a</span>
+    <span style="--i:4">d</span>
+    <span style="--i:5">i</span>
+    <span style="--i:6">n</span>
+    <span style="--i:7">g</span>
+    <span style="--i:8">.</span>
+    <span style="--i:9">.</span>
+    <span style="--i:10">.</span>
+  </div>
+  <!-- <h4 class="text-center loading "> <div>Loading</div>  <div class="ball"></div> <div class="ball ball1 "></div> <div class="ball  ball2 "></div></h4> -->
+</ngx-spinner>
+<div id="mySidenav" class="sidenav" [ngClass]="line ? '':'widt'">
+  <div class="border border-dark p-2  m-1 rounded mainDiv">
+    <h3 class="text-center sideTitle">KNOW POWER OUTAGE STATUS</h3>
+    <div class=" px-2 pt-3 pb-3 ">
+      <select name="state" id="state" class="form-select" name="state" (change)="myFunc()" [(ngModel)]="stateID">
+        <option [value]="0" selected>State</option>
+        <option *ngFor="let i of stateData" [value]="i.stateID">{{i.name}}</option>
+      </select>
+    </div>
+    <div class=" px-2 pt-3 pb-3 ">
+      <select name="state" id="state" class="form-select" name="state" (change)="myChangeDiscom()"
+        [(ngModel)]="discomID">
+
+        <option [value]="0" selected>Discom</option>
+        <option *ngFor="let i of discomData " [value]="i.discomID">{{i.discomName}}</option>
+      </select>
+    </div>
+    <div class=" px-2 pt-3 pb-3 ">
+      <select name="state" id="state" class="form-select" name="state" [(ngModel)]="circleID">
+        <option [value]="0" selected>Circle</option>
+        <option *ngFor="let i of circleData " [value]="i.circleId">{{i.circleName}}</option>
+      </select>
+    </div>
+    <div class="row d-flex">
+      <div class="col-12  px-4">
+        <button class="btn w-100 btn-danger p-1" (click)="Scheduled()">SCHEDULED
+          OUTAGE</button>
+      </div>
+      <div class="col-12 mt-2  px-4">
+        <button class="btn w-100 btn-danger p-1" (click)="ongoing()">ONGOING
+          OUTAGE</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="vartical-line" (click)="line = !line" [ngClass]="line ? '':'margLine'"><i class='fas fa-angle-left'
+    [ngClass]="line?'fa-angle-left':'fa-angle-right'" style='font-size:26px'></i></div>
+<div class=" mainTable " [ngClass]="line ? '':'marg'">
+  <div class="" id="">
+    <div class="container">
+      <div class="row mt-5" [ngClass]="timeFilterRow?'':'d-none'">
+        <div class="col-sm-2 px-2 pt-3 pb-3 form-floating">
+          <input type="text" id="startDate" name="startDate" [(ngModel)]="startDate" class=" form-control"
+            onfocus="(this.type='date')" onfocusout="(this.type='text')" placeholder="End Date">
+          <label for="startDate">Start Date</label>
+        </div>
+        <div class="col-sm-2 px-2 pt-3 pb-3 form-floating">
+          <input type="text" id="endDate" name="endDate" [(ngModel)]="endDate" class=" form-control"
+            onfocus="(this.type='date')" onfocusout="(this.type='text')" placeholder="End Date">
+          <label for="endDate">End Date</label>
+        </div>
+        <div class="col-sm-2 px-2 pt-3 pb-3 ">
+          <button class="btn btn-primary" (click)="submitData()">submit</button>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive p-2" [ngClass]="timeFilterRow?'':'mt-5'">
+      <table class="table table-bordered  text-nowrap  ">
+        <thead>
+          <tr>
+            <th>NO</th>
+            <th>FEEDER</th>
+            <th>OUTAGE TYPE</th>
+            <th>OUTAGE DATE TIME</th>
+            <th>EXPECTED RESTORE DATE TIME</th>
+            <th>REASON</th>
+            <th>SUB STATION </th>
+            <th>DIVISION</th>
+            <th>SUB DIVISION</th>
+          </tr>
+        </thead>
+        <tbody class="">
+          <tr *ngFor="let item of newData1 ; let i = index">
+            <ng-container *ngIf="firstRecord <= i && lastRecord > i ">
+              <td>{{i+1}}</td>
+              <td>{{item.feederName}}</td>
+              <td>{{item.outType}}</td>
+              <td>{{item.outDatetime}}</td>
+              <td>{{item.expectedDatetime}}</td>
+              <td>{{item.reason}}</td>
+              <td>{{item.subStationName}}</td>
+              <td>{{item.divisionName}}</td>
+              <td>{{item.subDivisionName}}</td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <td class="row m-0">
+      <ng-container *ngIf="lastPageNo == 0">
+        <div>No Record Found</div>
+      </ng-container>
+      <div class="mt-3">
+        <ng-container *ngIf="lastPageNo > 0">
+          <div class="d-flex mt-2  justify-content-center flex-wrap" [ngClass]="numberOfPages==1000 ? 'd-none' : ''">
+            <ng-container *ngIf="numberOfPages!=1000">
+              <div class="m-1">
+                <select class="form-select  px-4 col-md-2 " id="pagesNumberOfData" [(ngModel)]="numberOfPages"
+                  (change)="selctNumberOfPage()">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+              <div>
+                <ul class="pagination m-1 mx-4 " id="pages">
+                  <li class="page-item"><a class="page-link" id="pre" (click)="previousPage()">Previous</a>
+                  </li>
+                  <li class="page-item" [ngClass]="currentPage==(1)?'active':''"><a class="page-link "
+                      (click)="currentPageNumber(1)">1</a></li>
+                  <ng-container *ngIf="currentPage >=4">
+                    <li class="page-item disabled"><a class="page-link ">...</a></li>
+                  </ng-container>
+                  <li class="page-item" *ngFor="let le of [].constructor(lastPageNo-1) ; let i = index"
+                    [ngClass]="currentPage==(i+1)?'active':''">
+                    <ng-container *ngIf="i >  0 ">
+                      <ng-container *ngIf="currentPage ==  1  ; else elseNotDone">
+                        <ng-container *ngIf="currentPage+1== i+1 || currentPage+2==i+1 || currentPage==i+1 ">
+                          <a class="page-link " (click)="currentPageNumber(i+1)">{{i+1}}</a>
+                        </ng-container>
+                      </ng-container>
+                      <ng-template #elseNotDone>
+                        <ng-container *ngIf="(currentPage+1== i+1 || currentPage==i+1 ||  currentPage-1 ==i+1)">
+                          <a class="page-link " (click)="currentPageNumber(i+1)">{{i+1}}</a>
+                        </ng-container>
+                      </ng-template>
+                    </ng-container>
+                  </li>
+                  <ng-container *ngIf="currentPage<lastPageNo-2">
+                    <li class="page-item disabled"><a class="page-link ">...</a></li>
+                  </ng-container>
+                  <ng-container *ngIf="lastPageNo>1">
+                    <li class="page-item" [ngClass]="currentPage==(lastPageNo)?'active':''">
+                      <a class="page-link " (click)="currentPageNumber(lastPageNo)">{{lastPageNo}}</a>
+                    </li>
+                  </ng-container>
+                  <li class="page-item"><a class="page-link" id="next" (click)="nextpage()">Next</a>
+                  </li>
+                </ul>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </td>
+  </div>
+</div>

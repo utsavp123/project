@@ -24,9 +24,11 @@ th {
 .table-responsive::-webkit-scrollbar {
     display: none;
 }
+
 ::-webkit-scrollbar {
     display: none;
-  }
+}
+
 .fa-solid {
     visibility: hidden;
 }
@@ -97,4 +99,8 @@ th:hover {
     z-index: 10;
     box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.2);
     margin-right: 15px;
+}
+
+.searchFilter {
+    height: 41px;
 }
